@@ -7,14 +7,15 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 public class DB {
-    
-    private static Connection conn;
-    
-    public static Connection getConnection() {
+
+    private static Connection conn = null;
+
+    public static Connection connector() {
         if (conn == null) {
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:db-jdbc-javafx.db");
-                System.out.println("Conectado com sucesso!");
+                conn = DriverManager.getConnection("jdbc:sqlite:nb-jdbc-javafx.db");
+                System.out.println("Conectado!");
+
             } catch (SQLException e) {
                 throw new DbException(e.getMessage());
             }
@@ -22,7 +23,7 @@ public class DB {
         return conn;
     }
     
-    public static void closeConecction() {
+    public static void closeConnection() {
         if (conn != null) {
             try {
                 conn.close();
@@ -51,5 +52,4 @@ public class DB {
             }
         }
     }
-    
 }
