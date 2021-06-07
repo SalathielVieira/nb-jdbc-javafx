@@ -1,0 +1,44 @@
+Código SQL para criação das tabelas e inserção dos dados:
+
+    CREATE TABLE department (
+        Id   INT PRIMARY KEY AUTOINCREMENT
+                     NOT NULL,
+        Name VARCHAR NOT NULL
+    );
+
+    CREATE TABLE seller (
+        Id           INTEGER  PRIMARY KEY AUTOINCREMENT
+                              NOT NULL,
+        Name         VARCHAR  NOT NULL,
+        Email        VARCHAR  NOT NULL,
+        BirthDate    DATETIME NOT NULL,
+        BaseSalary   DOUBLE   NOT NULL,
+        DepartmentId INTEGER  NOT NULL
+                              REFERENCES department (Id) 
+    );
+
+    INSERT INTO department (Name) VALUES 
+      ('Computers'),
+      ('Electronics'),
+      ('Fashion'),
+      ('Books');
+
+    INSERT INTO seller (Name, Email, BirthDate, BaseSalary, DepartmentId) VALUES 
+      ('Bob Brown','bob@gmail.com','1998-04-21 00:00:00',1000,1),
+      ('Maria Green','maria@gmail.com','1979-12-31 00:00:00',3500,2),
+      ('Alex Grey','alex@gmail.com','1988-01-15 00:00:00',2200,1),
+      ('Martha Red','martha@gmail.com','1993-11-30 00:00:00',3000,4),
+      ('Donald Blue','donald@gmail.com','2000-01-09 00:00:00',4000,3),
+      ('Alex Pink','bob@gmail.com','1997-03-04 00:00:00',3000,2);
+
+Recuperando Dados do banco de dados
+
+    Duas classes importantes da API JDBC:
+        - Statement: serve para montar um comando SQL para ser executado.
+        - ResultSet: representa um objeto contendo o resultado da consulta em forma de tabela.
+            .first();  // move para posição 1, se houver
+            .beforeFirst();  // move para a posição 0
+            .next();  // move para o próximo registro, retorna falso se já tiver no último. Útil para percorrer o ResultSet (while)
+            .absolute(int);  // move para a posição dada, lembrando que dados reais começam em 1
+
+    
