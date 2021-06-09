@@ -1,3 +1,29 @@
+Conexão com o Banco de Dados
+    - Criei o banco de dados no SQLiteStudio
+    - Salvei na pasta do projeto
+    - Usei o código abaixo para criação das tabelas e inserção dos dados
+    - Baixei o SQLite Connector JDBC e salvei numa pasta na raiz com PC
+    - Criei uma biblioteca (SQLiteConnector) e adicionei o conector a ela
+    - Adicionei essa biblioteca às bibliotecas do projeto
+    - Criei a classe DB no pacote db, responsável pela conexão com o banco de dados
+    - Na implementação da Classe DB:
+        1. Declarei um objeto privado e estatico do tipo Connection e nomeei como conn e deixei com valor nulo:
+            private static Connection conn = null;
+        2. Crei um método público e estático retornando um objeto do tipo Connection de nome getConnection:
+            public static Connection getConnection() {
+                if (conn == null) {
+                    try {
+                        conn = DriverManager.getConnection("jdbc:sqlite:nb-jdbc-javafx.db");
+                        System.out.println("Conectado!");
+
+                    } catch (SQLException e) {
+                        throw new DbException(e.getMessage());
+                    }
+                }
+                return conn;
+            }
+    
+
 Código SQL para criação das tabelas e inserção dos dados:
 
     CREATE TABLE department (

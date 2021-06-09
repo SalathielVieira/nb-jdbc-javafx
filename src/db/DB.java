@@ -10,7 +10,7 @@ public class DB {
 
     private static Connection conn = null;
 
-    public static Connection connector() {
+    public static Connection getConnection() {
         if (conn == null) {
             try {
                 conn = DriverManager.getConnection("jdbc:sqlite:nb-jdbc-javafx.db");
